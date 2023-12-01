@@ -1,7 +1,7 @@
 # Amos.Abp
 The repository is an extension based on Volo Abp(https://github.com/abpframework/abp)
 
-## Automatically adds entities to the DbContext Model
+## Automatically add entities to the DbContext Model
 ```C#
 
 ```
