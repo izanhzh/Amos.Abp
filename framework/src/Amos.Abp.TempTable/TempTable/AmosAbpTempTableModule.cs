@@ -1,14 +1,12 @@
 ﻿using Amos.Abp.Domain;
-using Amos.Abp.TempTable;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 
-namespace Amos.Abp.EntityFrameworkCore
+namespace Amos.Abp.TempTable
 {
     [DependsOn(typeof(AmosAbpDomainModule))]
-    [DependsOn(typeof(AmosAbpTempTableModule))]
     [DependsOn(typeof(AbpEntityFrameworkCoreModule))]
-    public class AmosAbpEntityFrameworkCoreModule : AbpModule
+    public class AmosAbpTempTableModule: AbpModule
     {
     }
 }
