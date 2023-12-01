@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Volo.Abp.Domain.Entities;
+using Volo.Abp.EntityFrameworkCore;
 
 namespace Amos.Abp.EntityFrameworkCore
 {
@@ -25,10 +26,27 @@ namespace Amos.Abp.EntityFrameworkCore
                 return result;
             }
 
-            var dbContextInterfaces = DbContextHelper.GetDbContextImplementsInterfaces(dbContextType);
+            var dbContextInterfaces = GetDbContextImplementsInterfaces(dbContextType);
             var autoAddEntityTypes = GetAutoAddEntityTypesFromModuleAssembly(dbContextInterfaces);
             _autoAddEntityTypeCache.AddOrUpdate(dbContextType, (t_key) => autoAddEntityTypes, (t_key, t_value) => autoAddEntityTypes);
             return autoAddEntityTypes;
+        }
+
+        private static IEnumerable<Type> GetDbContextImplementsInterfaces(Type dbContextType)
+        {
+            if (dbContextType.IsInterface && dbContextType.InheritsOrImplements(typeof(IEfCoreDbContext)))
+            {
+                yield return dbContextType;
+            }
+            var interfaces = dbContextType.GetInterfaces().Where(w => w.InheritsOrImplements(typeof(IEfCoreDbContext)));
+            foreach (var entry in interfaces)
+            {
+                var entryInterfaces = GetDbContextImplementsInterfaces(entry);
+                foreach (var entryInterface in entryInterfaces)
+                {
+                    yield return entryInterface;
+                }
+            }
         }
 
         private static IEnumerable<Type> GetAutoAddEntityTypesFromModuleAssembly(IEnumerable<Type> dbContextInterfaces)
@@ -45,10 +63,10 @@ namespace Amos.Abp.EntityFrameworkCore
 
         private static IEnumerable<Type> GetAutoAddEntityTypesFromModuleAssembly(Type dbContextInterface)
         {
-            var attributes = dbContextInterface.GetCustomAttributes<AutoAddModelFromModuleAssemblyAttribute>(true);
+            var attributes = dbContextInterface.GetCustomAttributes<AutoAddEntityToModelAttribute>(true);
             foreach (var attribute in attributes)
             {
-                var entityTypes = GetEntityTypeFromAssembly(attribute.ModuleType.Assembly);
+                var entityTypes = GetEntityTypeFromAssembly(attribute.FromModule.Assembly);
                 foreach (var entityType in entityTypes)
                 {
                     yield return entityType;

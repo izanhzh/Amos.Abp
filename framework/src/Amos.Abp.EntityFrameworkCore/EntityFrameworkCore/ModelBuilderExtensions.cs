@@ -6,12 +6,25 @@ namespace Amos.Abp.EntityFrameworkCore
 {
     public static class ModelBuilderExtensions
     {
-        public static void ConfigureAutoAddEntityTypes<TDbContext>(this ModelBuilder builder, AbpModelBuilderConfigurationOptions options) where TDbContext : IEfCoreDbContext
+        public static void AutoAddEntityTypeToModel<TDbContext>(this ModelBuilder modelBuilder) where TDbContext : IEfCoreDbContext
         {
             var entityTypes = EntityFinder.GetAutoAddEntityTypes(typeof(TDbContext));
             foreach (var entityType in entityTypes)
             {
-                builder.Entity(entityType, (b) =>
+                var isExists = modelBuilder.Model.FindEntityType(entityType) != null;
+                if (!isExists)
+                {
+                    modelBuilder.Model.AddEntityType(entityType);
+                }
+            }
+        }
+
+        public static void ConfigureAutoAddEntityTypes<TDbContext>(this ModelBuilder modelBuilder, AbpModelBuilderConfigurationOptions options) where TDbContext : IEfCoreDbContext
+        {
+            var entityTypes = EntityFinder.GetAutoAddEntityTypes(typeof(TDbContext));
+            foreach (var entityType in entityTypes)
+            {
+                modelBuilder.Entity(entityType, (b) =>
                 {
                     b.ToTable(options.TablePrefix + entityType.Name, options.Schema);
                     b.ConfigureByConvention();
