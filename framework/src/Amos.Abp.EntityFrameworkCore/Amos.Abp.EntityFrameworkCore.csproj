@@ -6,10 +6,11 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Version>1.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="\"/>
+		<None Include="README.md" Pack="true" PackagePath="\" />
 		<PackageReference Include="EFCore.BulkExtensions" Version="5.4.2" />
 		<PackageReference Include="Volo.Abp.Dapper" Version="4.4.4" />
 		<PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="4.4.4" />

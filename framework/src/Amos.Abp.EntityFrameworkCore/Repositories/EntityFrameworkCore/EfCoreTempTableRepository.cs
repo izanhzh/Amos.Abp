@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.EntityFrameworkCore;
 
-
 namespace Amos.Abp.Repositories.EntityFrameworkCore
 {
     public abstract class EfCoreTempTableRepository<TDbContext> : ITempTableRepository where TDbContext : IEfCoreDbContext
