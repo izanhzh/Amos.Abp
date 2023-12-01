@@ -12,16 +12,15 @@ namespace Amos.Abp.Repositories.Dapper
 {
     public abstract class DapperSqlRepository<TDbContext> : DapperRepository<TDbContext>, ISqlRepository where TDbContext : IEfCoreDbContext
     {
+        private readonly IDbContextProvider<TDbContext> _dbContextProvider;
         private readonly ISqlScriptProvider _sqlScriptProvider;
-        private readonly IDatabaseProviderInspector _databaseProviderInspector;
 
         public DapperSqlRepository(
             IDbContextProvider<TDbContext> dbContextProvider,
-            ISqlScriptProvider sqlScriptProvider,
-            IDatabaseProviderInspector databaseProviderInspector) : base(dbContextProvider)
+            ISqlScriptProvider sqlScriptProvider) : base(dbContextProvider)
         {
+            _dbContextProvider = dbContextProvider;
             _sqlScriptProvider = sqlScriptProvider;
-            _databaseProviderInspector = databaseProviderInspector;
         }
 
         public virtual async Task<int> ExecuteAsync(string sqlScriptKey, object scriptRenderParam = null, object sqlParam = null)
@@ -29,7 +28,7 @@ namespace Amos.Abp.Repositories.Dapper
             var dbConnection = await GetDbConnectionAsync();
             var dbTransaction = await GetDbTransactionAsync();
 
-            var databaseProvider = _databaseProviderInspector.GetDatabaseProvider(dbConnection);
+            var databaseProvider = await GetDatabaseProviderAsync();
 
             var sql = await _sqlScriptProvider.GetSqlScriptAsync(databaseProvider, sqlScriptKey, scriptRenderParam);
 
@@ -41,7 +40,7 @@ namespace Amos.Abp.Repositories.Dapper
             var dbConnection = await GetDbConnectionAsync();
             var dbTransaction = await GetDbTransactionAsync();
 
-            var databaseProvider = _databaseProviderInspector.GetDatabaseProvider(dbConnection);
+            var databaseProvider = await GetDatabaseProviderAsync();
 
             var sql = await _sqlScriptProvider.GetSqlScriptAsync(databaseProvider, sqlScriptKey, scriptRenderParam);
 
@@ -57,7 +56,7 @@ namespace Amos.Abp.Repositories.Dapper
             var dbConnection = await GetDbConnectionAsync();
             var dbTransaction = await GetDbTransactionAsync();
 
-            var databaseProvider = _databaseProviderInspector.GetDatabaseProvider(dbConnection);
+            var databaseProvider = await GetDatabaseProviderAsync();
 
             var sql = await _sqlScriptProvider.GetSqlScriptAsync(databaseProvider, sqlScriptKey, scriptRenderParam);
 
@@ -72,11 +71,18 @@ namespace Amos.Abp.Repositories.Dapper
             var dbConnection = await GetDbConnectionAsync();
             var dbTransaction = await GetDbTransactionAsync();
 
-            var databaseProvider = _databaseProviderInspector.GetDatabaseProvider(dbConnection);
+            var databaseProvider = await GetDatabaseProviderAsync();
 
             var sql = await _sqlScriptProvider.GetSqlScriptAsync(databaseProvider, sqlScriptKey, scriptRenderParam);
 
             return await dbConnection.QueryAsync<T>(sql, sqlParam, transaction: dbTransaction);
+        }
+
+        private async Task<string> GetDatabaseProviderAsync()
+        {
+            var dbContext = await _dbContextProvider.GetDbContextAsync();
+            var databaseProvider = (EfCoreDatabaseProvider)dbContext.Model["_Abp_DatabaseProvider"];
+            return databaseProvider.ToString();
         }
 
         private DataSet ConvertDataReaderToDataSet(IDataReader reader)
