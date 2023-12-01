@@ -11,9 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2E030A43-0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amos.Abp.Domain", "framework\src\Amos.Abp.Domain\Amos.Abp.Domain.csproj", "{646A7EB0-4CCB-4921-BB44-25E9FC58AB26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amos.Abp.EntityFrameworkCore", "framework\src\Amos.Abp.EntityFrameworkCore\Amos.Abp.EntityFrameworkCore.csproj", "{11A5B10B-98A1-4DB0-AE9C-D8FE61411243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amos.Abp.EntityFrameworkCore", "framework\src\Amos.Abp.EntityFrameworkCore\Amos.Abp.EntityFrameworkCore.csproj", "{11A5B10B-98A1-4DB0-AE9C-D8FE61411243}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amos.Abp.EntityFrameworkCore.SqlServer", "framework\src\Amos.Abp.EntityFrameworkCore.SqlServer\Amos.Abp.EntityFrameworkCore.SqlServer.csproj", "{5B0AF656-C778-41A6-87BB-726AF6B7B568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amos.Abp.EntityFrameworkCore.SqlServer", "framework\src\Amos.Abp.EntityFrameworkCore.SqlServer\Amos.Abp.EntityFrameworkCore.SqlServer.csproj", "{5B0AF656-C778-41A6-87BB-726AF6B7B568}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amos.Abp.TestBase", "framework\test\Amos.Abp.TestBase\Amos.Abp.TestBase.csproj", "{F0EA95F8-2430-45AA-BC91-7F82632FE629}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5B0AF656-C778-41A6-87BB-726AF6B7B568}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B0AF656-C778-41A6-87BB-726AF6B7B568}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B0AF656-C778-41A6-87BB-726AF6B7B568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0EA95F8-2430-45AA-BC91-7F82632FE629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0EA95F8-2430-45AA-BC91-7F82632FE629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0EA95F8-2430-45AA-BC91-7F82632FE629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0EA95F8-2430-45AA-BC91-7F82632FE629}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{646A7EB0-4CCB-4921-BB44-25E9FC58AB26} = {1E822343-7897-48F5-97AB-DCBD6D033761}
 		{11A5B10B-98A1-4DB0-AE9C-D8FE61411243} = {1E822343-7897-48F5-97AB-DCBD6D033761}
 		{5B0AF656-C778-41A6-87BB-726AF6B7B568} = {1E822343-7897-48F5-97AB-DCBD6D033761}
+		{F0EA95F8-2430-45AA-BC91-7F82632FE629} = {2E030A43-0773-4456-87B9-BFD03A3DF742}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF4F7451-E8E3-4F67-A5C6-4967E67D7ABD}
