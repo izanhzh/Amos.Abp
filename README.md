@@ -69,8 +69,9 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     }
 }
 ```
-Then by calling the `builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly())`  configuration entity, just like the example above  
-6. Register automatically add entities repository in your EntityFrameworkCoreModule, use `AddAbpDbContextEx` instead of `AddAbpDbContext`
+Then by calling the `builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly())`  configuration entity, just like the example above 
+
+6. Register automatically add entities repository and DependsOn in your EntityFrameworkCoreModule, use `AddAbpDbContextEx` instead of `AddAbpDbContext`
 ```C#
 [DependsOn(typeof(YourDomainModule))]
 [DependsOn(typeof(AmosAbpEntityFrameworkCoreModule))]
@@ -81,8 +82,7 @@ public class YourEntityFrameworkCoreModule : AbpModule
         context.Services.AddAbpDbContextEx<OrderManagementDbContext>(options =>{});
     }
 }
-```
-Note: Add DependsOn  
+```  
 7. Finally, as normal, you can inject automatically add entity repository to use
 ```C#
 public class YourAppService : IYourAppService
