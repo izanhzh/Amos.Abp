@@ -22,8 +22,7 @@ public class YourDbContext : AbpDbContext<YourDbContext>, IYourDbContext
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
-      //Note: Call it before base.OnModelCreating
-      builder.AutoAddEntityTypeToModel(this);
+      builder.AutoAddEntityTypeToModel(this);//Note: Call it before base.OnModelCreating
       base.OnModelCreating(builder);
       builder.ConfigureYourModule();
   }
