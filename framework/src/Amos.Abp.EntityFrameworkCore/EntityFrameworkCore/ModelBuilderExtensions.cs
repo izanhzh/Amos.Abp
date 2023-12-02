@@ -7,6 +7,12 @@ namespace Amos.Abp.EntityFrameworkCore
 {
     public static class ModelBuilderExtensions
     {
+        /// <summary>
+        /// Note: Call it before base.OnModelCreating
+        /// </summary>
+        /// <typeparam name="TDbContext"></typeparam>
+        /// <param name="modelBuilder"></param>
+        /// <param name="_"></param>
         public static void AutoAddEntityTypeToModel<TDbContext>(this ModelBuilder modelBuilder, TDbContext _) where TDbContext : IEfCoreDbContext
         {
             var entityTypes = EntityFinder.GetAutoAddEntityTypes(typeof(TDbContext));
@@ -20,12 +26,12 @@ namespace Amos.Abp.EntityFrameworkCore
             }
         }
 
-        public static void ConfigureAutoAddEntityTypes<TDbContext>(this ModelBuilder modelBuilder, Action<EntityTypeBuilder> buildAction) where TDbContext : IEfCoreDbContext
+        public static void ConfigureAutoAddEntityTypes<TDbContext>(this ModelBuilder modelBuilder, Func<Type, Action<EntityTypeBuilder>> buildFunc) where TDbContext : IEfCoreDbContext
         {
             var entityTypes = EntityFinder.GetAutoAddEntityTypes(typeof(TDbContext));
             foreach (var entityType in entityTypes)
             {
-                modelBuilder.Entity(entityType, buildAction);
+                modelBuilder.Entity(entityType, buildFunc(entityType));
             }
         }
     }

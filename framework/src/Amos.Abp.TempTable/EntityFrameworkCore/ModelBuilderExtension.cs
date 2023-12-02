@@ -7,6 +7,12 @@ namespace Amos.Abp.EntityFrameworkCore
 {
     public static class ModelBuilderExtension
     {
+        /// <summary>
+        /// Note: Call it before base.OnModelCreating
+        /// </summary>
+        /// <typeparam name="TDbContext"></typeparam>
+        /// <param name="modelBuilder"></param>
+        /// <param name="_"></param>
         public static void AutoAddTempTableToModel<TDbContext>(this ModelBuilder modelBuilder, TDbContext _) where TDbContext : IEfCoreDbContext
         {
             var tempTables = TempTableFinder.GetAutoAddTempTables(typeof(TDbContext));
