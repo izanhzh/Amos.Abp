@@ -78,7 +78,7 @@ public class YourEntityFrameworkCoreModule : AbpModule
     }
 }
 ```
-Note: Add DependsOn
+Note: Add DependsOn  
 7. Finally, as normal, you can inject automatically add entity repository to use
 ```C#
 public class YourAppService : IYourAppService
