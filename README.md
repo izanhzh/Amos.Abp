@@ -194,7 +194,7 @@ public interface IYourSqlScriptRepository : ISqlScriptRepository
 3. Add the `Amos.Abp.SqlScript` Nuget package to your EntityFrameworkCore layer
 4. Create sql script resource file in the EntityFrameworkCore layer (Similar to defining multilingual resource files, Please refer to the screenshot below)   
   ![Alt text](imags/screenshot1.png)
-    + Create a SqlScript folder, the define an sql script resource empty class in this folder
+    + Create a SqlScript folder, and define an sql script resource empty class in this folder
     ```C#
     public class YourSqlScriptResource
     {
