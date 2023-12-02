@@ -98,7 +98,7 @@ public class YourAppService : IYourAppService
 
 # Temp Table
 + What is an SQL Temp Table (https://www.databasestar.com/sql-temp-table/)
-+ At present, only SQL Server Temp Table is implemented. If you use other databases, you can expand the database support by implementing `ITempTableCreator`, `ITempTableBulkExecutor` interfaces
++ At present, only SQL Server Temp Table is implemented. If you use other database provider, you can expand the database support by implementing `ITempTableCreator`, `ITempTableBulkExecutor` interfaces
 
 1. Add the `Amos.Abp.Domain` Nuget package to your Domain layer
 2. Create TempTable class in the Domain layer
