@@ -56,7 +56,7 @@ public static class YourModuleDbContextModelCreatingExtensions
     }
 }
 ```
-You are advised to configure the index, Key, and so on for the Entity through the IEntityTypeConfiguration interface that inherits EfCore, at your EntityFrameworkCore layer
+You are advised to configure the index, Key, etc., by implementing the EfCore IEntityTypeConfiguration interface, at your EntityFrameworkCore layer
 ```C#
 public class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
