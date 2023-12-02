@@ -6,7 +6,6 @@ using Volo.Abp.Modularity;
 namespace Amos.Abp.EntityFrameworkCore
 {
     [DependsOn(typeof(AmosAbpDomainModule))]
-    [DependsOn(typeof(AmosAbpTempTableModule))]
     [DependsOn(typeof(AbpEntityFrameworkCoreModule))]
     public class AmosAbpEntityFrameworkCoreModule : AbpModule
     {

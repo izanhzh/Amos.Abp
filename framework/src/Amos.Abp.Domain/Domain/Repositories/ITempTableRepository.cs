@@ -9,5 +9,7 @@ namespace Amos.Abp.Domain.Repositories
     public interface ITempTableRepository : IRepository
     {
         Task<IQueryable<TTempTable>> InsertIntoTempTableAsync<TTempTable>(IEnumerable<TTempTable> entities) where TTempTable : class, ITempTable;
+
+        Task<string> InsertIntoTempTableAndGetTableNameAsync<TTempTable>(IEnumerable<TTempTable> entities) where TTempTable : class, ITempTable;
     }
 }

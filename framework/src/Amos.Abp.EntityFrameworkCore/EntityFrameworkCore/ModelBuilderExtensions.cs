@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace Amos.Abp.EntityFrameworkCore
 {
     public static class ModelBuilderExtensions
     {
-        public static void AutoAddEntityTypeToModel<TDbContext>(this ModelBuilder modelBuilder) where TDbContext : IEfCoreDbContext
+        public static void AutoAddEntityTypeToModel<TDbContext>(this ModelBuilder modelBuilder, TDbContext _) where TDbContext : IEfCoreDbContext
         {
             var entityTypes = EntityFinder.GetAutoAddEntityTypes(typeof(TDbContext));
             foreach (var entityType in entityTypes)
@@ -19,16 +20,12 @@ namespace Amos.Abp.EntityFrameworkCore
             }
         }
 
-        public static void ConfigureAutoAddEntityTypes<TDbContext>(this ModelBuilder modelBuilder, AbpModelBuilderConfigurationOptions options) where TDbContext : IEfCoreDbContext
+        public static void ConfigureAutoAddEntityTypes<TDbContext>(this ModelBuilder modelBuilder, Action<EntityTypeBuilder> buildAction) where TDbContext : IEfCoreDbContext
         {
             var entityTypes = EntityFinder.GetAutoAddEntityTypes(typeof(TDbContext));
             foreach (var entityType in entityTypes)
             {
-                modelBuilder.Entity(entityType, (b) =>
-                {
-                    b.ToTable(options.TablePrefix + entityType.Name, options.Schema);
-                    b.ConfigureByConvention();
-                });
+                modelBuilder.Entity(entityType, buildAction);
             }
         }
     }

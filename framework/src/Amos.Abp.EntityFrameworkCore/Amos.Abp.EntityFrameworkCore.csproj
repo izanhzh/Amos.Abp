@@ -6,7 +6,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -17,7 +17,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Amos.Abp.Domain\Amos.Abp.Domain.csproj" />
-		<ProjectReference Include="..\Amos.Abp.TempTable\Amos.Abp.TempTable.csproj" />
 	</ItemGroup>
 
 </Project>

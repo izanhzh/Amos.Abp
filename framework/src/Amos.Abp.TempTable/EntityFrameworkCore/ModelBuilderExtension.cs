@@ -7,7 +7,7 @@ namespace Amos.Abp.EntityFrameworkCore
 {
     public static class ModelBuilderExtension
     {
-        public static void AutoAddTempTableToModel<TDbContext>(this ModelBuilder modelBuilder) where TDbContext : IEfCoreDbContext
+        public static void AutoAddTempTableToModel<TDbContext>(this ModelBuilder modelBuilder, TDbContext _) where TDbContext : IEfCoreDbContext
         {
             var tempTables = TempTableFinder.GetAutoAddTempTables(typeof(TDbContext));
             foreach (var tempTable in tempTables)
@@ -19,7 +19,7 @@ namespace Amos.Abp.EntityFrameworkCore
                     modelBuilder.Entity(tempTable, (b) =>
                     {
                         //b.ToView(null);
-                        b.ToTable("#TempTable_" + tempTable.Name, (t) => t.ExcludeFromMigrations());
+                        b.ToTable("TempTable_" + tempTable.Name, (t) => t.ExcludeFromMigrations());
                         b.HasNoKey();
                         b.ConfigureByConvention();
                     });
