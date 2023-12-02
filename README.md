@@ -29,7 +29,7 @@ public class YourDbContext : AbpDbContext<YourDbContext>, IYourDbContext
   }
 }
 ```
-5. Configure the automatically add entities in your ModuleDbContextModelCreatingExtensions
+5. Follow volo abp modular best practices, configure the automatically add entities in your ModuleDbContextModelCreatingExtensions
 ```C#
 public static class YourModuleDbContextModelCreatingExtensions
 {
@@ -46,7 +46,7 @@ public static class YourModuleDbContextModelCreatingExtensions
 
         optionsAction?.Invoke(options);
 
-        builder.ConfigureAutoAddEntityTypes<IProductManagementDbContext>((entityType) => (b) =>
+        builder.ConfigureAutoAddEntityTypes<IYourDbContext>((entityType) => (b) =>
         {
             b.ToTable(options.TablePrefix + entityType.Name, options.Schema);
             b.ConfigureByConvention();
@@ -56,6 +56,17 @@ public static class YourModuleDbContextModelCreatingExtensions
     }
 }
 ```
+You are advised to configure the index, Key, and so on for the Entity through the IEntityTypeConfiguration interface that inherits EfCore, at your EntityFrameworkCore layer
+```C#
+public class ProductConfiguration : IEntityTypeConfiguration<Product>
+{
+    public void Configure(EntityTypeBuilder<Product> builder)
+    {
+        builder.HasIndex(h => h.Name).HasFilter("IsDeleted=0").IsUnique();
+    }
+}
+```
+ 
  
 TODO: description document
 
