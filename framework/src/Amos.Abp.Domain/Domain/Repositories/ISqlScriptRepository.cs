@@ -14,6 +14,8 @@ namespace Amos.Abp.Domain.Repositories
 
         Task<int> ExecuteAsync(string sqlScriptKey, object scriptRenderParam = null, object sqlParam = null);
 
+        Task<object> ExecuteScalar(string sqlScriptKey, object scriptRenderParam = null, object sqlParam = null);
+
         Task<DataTable> QueryAsDataTableAsync(string sqlScriptKey, object scriptRenderParam = null, object sqlParam = null);
 
         Task<DataSet> QueryAsDataSetAsync(string sqlScriptKey, object scriptRenderParam = null, object sqlParam = null);

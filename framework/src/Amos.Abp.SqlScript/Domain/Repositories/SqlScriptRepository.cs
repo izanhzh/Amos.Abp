@@ -40,6 +40,16 @@ namespace Amos.Abp.Repositories
             return await dbConnection.ExecuteAsync(sql, sqlParam, transaction: dbTransaction);
         }
 
+        public async Task<object> ExecuteScalar(string sqlScriptKey, object scriptRenderParam = null, object sqlParam = null)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var dbTransaction = await GetDbTransactionAsync();
+
+            var sql = await GetSqlScriptAsync(sqlScriptKey, scriptRenderParam);
+
+            return await dbConnection.ExecuteScalarAsync(sql, sqlParam, transaction: dbTransaction);
+        }
+
         public virtual async Task<DataTable> QueryAsDataTableAsync(string sqlScriptKey, object scriptRenderParam = null, object sqlParam = null)
         {
             var dbConnection = await GetDbConnectionAsync();
