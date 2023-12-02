@@ -1,7 +1,11 @@
-# Amos.Abp
-The repository is an extension based on Volo Abp(https://github.com/abpframework/abp)
+This repository is an extension based on Volo Abp(https://github.com/abpframework/abp)  
 
-## Automatically add entities to the DbContext Model
+- [Automatically add entities to the DbContext Model](#automatically-add-entities-to-the-dbcontext-model)
+- [Temp table](#temp-table)
+- [SqlScript](#sqlscript)
+- [BulkRepository](#bulkrepository)
+
+# Automatically add entities to the DbContext Model
 1. As normal, create your Entity class in the Domain layer
 2. Add the `Amos.Abp.EntityFrameworkCore` Nuget package to your EntityFrameworkCore layer
 3. Using `AutoAddEntityToModelAttribute` tag your DbContext interface
@@ -92,11 +96,11 @@ public class YourAppService : IYourAppService
 }
 ```
 
-## Temp table
+# Temp table
 TODO: description document
 
-## SqlScript
+# SqlScript
 TODO: description document
 
-## BulkRepository
+# BulkRepository
 TODO: description document
