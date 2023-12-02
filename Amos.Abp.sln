@@ -17,9 +17,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amos.Abp.TestBase", "framew
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amos.Abp.SqlScript", "framework\src\Amos.Abp.SqlScript\Amos.Abp.SqlScript.csproj", "{890CC207-D020-48AB-B690-38AFDC25CC43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amos.Abp.TempTable", "framework\src\Amos.Abp.TempTable\Amos.Abp.TempTable.csproj", "{D3EDC599-04D1-47BA-98D1-A1462FDDA809}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amos.Abp.TempTable", "framework\src\Amos.Abp.TempTable\Amos.Abp.TempTable.csproj", "{D3EDC599-04D1-47BA-98D1-A1462FDDA809}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amos.Abp.TempTable.SqlServer", "framework\src\Amos.Abp.TempTable.SqlServer\Amos.Abp.TempTable.SqlServer.csproj", "{29A1D6A0-7AB8-476A-AD16-4CB64B07CFF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amos.Abp.TempTable.SqlServer", "framework\src\Amos.Abp.TempTable.SqlServer\Amos.Abp.TempTable.SqlServer.csproj", "{29A1D6A0-7AB8-476A-AD16-4CB64B07CFF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2A30059F-CD87-4C71-8ABB-0C0030FB510F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
