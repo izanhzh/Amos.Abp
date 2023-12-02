@@ -29,7 +29,7 @@ public class YourDbContext : AbpDbContext<YourDbContext>, IYourDbContext
   }
 }
 ```
-5. Follow volo abp modular best practices, configure the automatically add entities in your ModuleDbContextModelCreatingExtensions
+5. Follow Volo abp modular best practices, configure the automatically add entities in your ModuleDbContextModelCreatingExtensions
 ```C#
 public static class YourModuleDbContextModelCreatingExtensions
 {
@@ -66,9 +66,32 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     }
 }
 ```
- 
- 
-TODO: description document
+Then by calling the `builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly())`  configuration entity, just like the example above
+6. Register automatically add entities repository in your EntityFrameworkCoreModule, use `AddAbpDbContextEx` instead of `AddAbpDbContext`
+```C#
+[DependsOn(typeof(YourDomainModule))]
+[DependsOn(typeof(AmosAbpEntityFrameworkCoreModule))]
+public class YourEntityFrameworkCoreModule : AbpModule
+{
+    public override void ConfigureServices(ServiceConfigurationContext context)
+    {
+        context.Services.AddAbpDbContextEx<OrderManagementDbContext>(options =>{});
+    }
+}
+```
+Note: Add DependsOn
+7. Finally, as normal, you can inject automatically add entity repository to use
+```C#
+public class YourAppService : IYourAppService
+{
+    private readonly Lazy<IRepository<XXEntity, long>> _xxRepositoryLazy;
+
+    public YourAppService(Lazy<IRepository<XXEntity, long>> xxRepositoryLazy)
+    {
+        _xxRepositoryLazy = xxRepositoryLazy;
+    }
+}
+```
 
 ## Temp table
 TODO: description document
