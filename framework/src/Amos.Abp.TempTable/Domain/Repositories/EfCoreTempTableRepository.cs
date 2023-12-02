@@ -25,5 +25,15 @@ namespace Amos.Abp.Domain.Repositories
                 TempTableCreationOptions = new TempTableCreationOptions() { MakeTableNameUnique = true }
             });
         }
+
+        public virtual async Task<string> InsertIntoTempTableAndGetTableNameAsync<TTempTable>(IEnumerable<TTempTable> entities) where TTempTable : class, ITempTable
+        {
+            var dbContext = await _dbContextProvider.GetDbContextAsync();
+            return await dbContext.InsertIntoTempTableAndGetTableNameAsync(entities, new TempTableInsertOptions
+            {
+                PrimaryKeyCreation = TempTablePrimaryKeyCreation.None,
+                TempTableCreationOptions = new TempTableCreationOptions() { MakeTableNameUnique = true }
+            });
+        }
     }
 }

@@ -52,6 +52,33 @@ namespace Amos.Abp.EntityFrameworkCore
             return ctx.GetTempTableQuery<TDbContext, TTempTable>(tableName);
         }
 
+        public static async Task<string> InsertIntoTempTableAndGetTableNameAsync<TDbContext, TTempTable>(this TDbContext ctx, IEnumerable<TTempTable> entities, TempTableInsertOptions options = null, CancellationToken cancellationToken = default)
+            where TTempTable : class, ITempTable
+            where TDbContext : IEfCoreDbContext
+        {
+            if (ctx == null)
+                throw new ArgumentNullException(nameof(ctx));
+            if (entities == null)
+                throw new ArgumentNullException(nameof(entities));
+
+            options ??= new TempTableInsertOptions();
+            var entityType = ctx.Model.FindEntityType(typeof(TTempTable));
+            var tempTableCreator = ctx.GetService<ITempTableCreator>();
+            var tempTableBulkExecutor = ctx.GetService<ITempTableBulkExecutor>();
+
+            var tableName = await tempTableCreator.CreateTempTableAsync(ctx, entityType, options.TempTableCreationOptions, cancellationToken).ConfigureAwait(false);
+
+            if (options.PrimaryKeyCreation == TempTablePrimaryKeyCreation.BeforeBulkInsert)
+                await tempTableCreator.CreatePrimaryKeyAsync(ctx, entityType, tableName, !options.TempTableCreationOptions.MakeTableNameUnique, cancellationToken).ConfigureAwait(false);
+
+            await tempTableBulkExecutor.BulkInsertAsync(ctx, entityType, entities, null, tableName, options.TempTableBulkExecutorOptions, cancellationToken).ConfigureAwait(false);
+
+            if (options.PrimaryKeyCreation == TempTablePrimaryKeyCreation.AfterBulkInsert)
+                await tempTableCreator.CreatePrimaryKeyAsync(ctx, entityType, tableName, !options.TempTableCreationOptions.MakeTableNameUnique, cancellationToken).ConfigureAwait(false);
+
+            return tableName;
+        }
+
         private static IQueryable<TTempTable> GetTempTableQuery<TDbContext, TTempTable>(this TDbContext ctx, string tableName)
             where TDbContext : IEfCoreDbContext
             where TTempTable : class, ITempTable

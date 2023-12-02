@@ -1,10 +1,10 @@
-﻿using Amos.Abp.EntityFrameworkCore;
-using Amos.Abp.EntityFrameworkCore.DependencyInjection;
+﻿using Amos.Abp.EntityFrameworkCore.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Reflection;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.DependencyInjection;
 
 namespace Amos.Abp.Microsoft.Extensions.DependencyInjection
@@ -23,7 +23,7 @@ namespace Amos.Abp.Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddAbpDbContextEx<TDbContext>(
             this IServiceCollection services,
             Action<IAbpDbContextRegistrationOptionsBuilder>? optionsBuilder = null)
-            where TDbContext : AmosAbpDbContext<TDbContext>
+            where TDbContext : AbpDbContext<TDbContext>
         {
             services.AddAbpDbContext<TDbContext>(optionsBuilder);//Abp默认实现，查找Entity时是通过搜索DbContxt DbSet类型的属性，这个代码必须在最前面
 
@@ -32,7 +32,7 @@ namespace Amos.Abp.Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        private static void RegisterAutoAddEntityRepository<TDbContext>(IServiceCollection services, Action<IAbpDbContextRegistrationOptionsBuilder> optionsBuilder) where TDbContext : AmosAbpDbContext<TDbContext>
+        private static void RegisterAutoAddEntityRepository<TDbContext>(IServiceCollection services, Action<IAbpDbContextRegistrationOptionsBuilder> optionsBuilder) where TDbContext : AbpDbContext<TDbContext>
         {
             #region 参考Abp的源码 https://github.com/abpframework/abp/blob/dev/framework/src/Volo.Abp.EntityFrameworkCore/Microsoft/Extensions/DependencyInjection/AbpEfCoreServiceCollectionExtensions.cs
             var options = new AbpDbContextRegistrationOptions(typeof(TDbContext), services);
