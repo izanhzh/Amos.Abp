@@ -65,7 +65,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     }
 }
 ```
-Then by calling the `builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly())`  configuration entity, just like the example above
+Then by calling the `builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly())`  configuration entity, just like the example above  
 6. Register automatically add entities repository in your EntityFrameworkCoreModule, use `AddAbpDbContextEx` instead of `AddAbpDbContext`
 ```C#
 [DependsOn(typeof(YourDomainModule))]
