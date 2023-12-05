@@ -182,7 +182,7 @@ This repository is an extension based on Volo Abp(https://github.com/abpframewor
 # Sql Script
 + This feature is used to perform high-performance database operations using native sql
 + Centralized management of sql scripts
-+ Easily supports multiple different database provider(MySql, SQLServer, Oracle, etc.), Reduce the impact of different database provider sql syntax differences
++ Easily supports multiple different database provider(MySql, SqlServer, Oracle, etc. please see the `Volo.Abp.EntityFrameworkCore.EfCoreDatabaseProvider`), Reduce the impact of different database provider sql syntax differences
 + Based on EFCore, Dapper makes almost no disruptive adjustments to the original configuration
 1. Add the `Amos.Abp.Domain` Nuget package to your Domain layer
 2. Define a sql script repository interface in the Domain layer
@@ -262,4 +262,4 @@ This repository is an extension based on Volo Abp(https://github.com/abpframewor
         }
     }
     ```
-    Note: sql scirpt depends on the database provider you set in DbContext (if your DbContext setting uses SqlServer, sql scirpt in SqlServer.xml will be used, if your DbContext setting uses SqlServer MySql, sql scirpt in MySql.xml will be used), please see the `Volo.Abp.EntityFrameworkCore.EfCoreDatabaseProvider`
+    Note: sql scirpt depends on the database provider you set in DbContext get database provider : `((EfCoreDatabaseProvider)dbContext.Model["_Abp_DatabaseProvider"]`, if your DbContext setting uses SqlServer, sql scirpt in SqlServer.xml will be used, if your DbContext setting uses SqlServer MySql, sql scirpt in MySql.xml will be used)
