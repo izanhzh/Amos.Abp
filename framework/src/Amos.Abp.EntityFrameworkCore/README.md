@@ -1,2 +1,1 @@
-﻿1. EfCoreBulkRepository
-2. Auto add entity to DbContext Model
+﻿1. Auto add entity to DbContext Model

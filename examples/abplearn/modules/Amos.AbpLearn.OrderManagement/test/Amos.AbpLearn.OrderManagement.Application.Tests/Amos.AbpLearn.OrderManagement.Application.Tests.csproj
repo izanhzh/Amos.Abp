@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Amos.AbpLearn.OrderManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Amos.AbpLearn.OrderManagement.Application\Amos.AbpLearn.OrderManagement.Application.csproj" />
+    <ProjectReference Include="..\Amos.AbpLearn.OrderManagement.Domain.Tests\Amos.AbpLearn.OrderManagement.Domain.Tests.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+  </ItemGroup>
+
+</Project>

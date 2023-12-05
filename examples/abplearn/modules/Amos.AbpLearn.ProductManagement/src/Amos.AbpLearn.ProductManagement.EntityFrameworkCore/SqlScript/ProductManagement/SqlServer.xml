@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SqlScripts Namespace="ProductManagement" DatabaseProvider="SqlServer" >
+	<Item Key="SelectProductById">select * from ProductManagementProduct where Id=@Id</Item>
+	<Item Key="SoftDeleteProductById">update ProductManagementProduct set IsDelete=1 where Id=@Id</Item>
+	<Item Key="SelectDynamicTableById">select * from {{table}} where Id=@Id</Item>
+	<Item Key="TestMultiline">
+		select * from ProductManagementProduct where Id=@Id;
+		select * from OrderManagementOrder as b
+	</Item>
+</SqlScripts>

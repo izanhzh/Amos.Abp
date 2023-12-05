@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>Amos.AbpLearn.ProductManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="4.4.4" />
+    <ProjectReference Include="..\Amos.AbpLearn.ProductManagement.Application.Contracts\Amos.AbpLearn.ProductManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Amos.AbpLearn.ProductManagement.Domain\Amos.AbpLearn.ProductManagement.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
