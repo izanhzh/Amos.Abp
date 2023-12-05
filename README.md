@@ -262,4 +262,4 @@ This repository is an extension based on Volo Abp(https://github.com/abpframewor
         }
     }
     ```
-    Note: sql scirpt depends on the database provider you set in DbContext (Get database provider : `((EfCoreDatabaseProvider)dbContext.Model["_Abp_DatabaseProvider"]`, if your DbContext setting uses SqlServer, sql scirpt in SqlServer.xml will be used, if your DbContext setting uses SqlServer MySql, sql scirpt in MySql.xml will be used)
+    Note: sql scirpt depends on the database provider you set in DbContext (Get database provider : `((EfCoreDatabaseProvider)dbContext.Model["_Abp_DatabaseProvider"]`, if your DbContext setting uses SqlServer, sql scirpt in SqlServer.xml will be used, if your DbContext setting uses MySql, sql scirpt in MySql.xml will be used)
