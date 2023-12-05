@@ -257,7 +257,7 @@ This repository is an extension based on Volo Abp(https://github.com/abpframewor
         public async Task TestAsync()
         {
             var ds = await _yourSqlScriptRepositoryLazy.Value.QueryAsDataSetAsync("OrderManagement:TestMultiline", sqlParam: new { Id = 1 });
-            var dt = await _productManagementSqlScriptRepositoryLazy.Value
+            var dt = await _yourSqlScriptRepositoryLazy.Value
             .QueryAsDataTableAsync("OrderManagement:SelectDynamicTableById",new { table= "Order" }, new { Id = 1 });        
         }
     }
