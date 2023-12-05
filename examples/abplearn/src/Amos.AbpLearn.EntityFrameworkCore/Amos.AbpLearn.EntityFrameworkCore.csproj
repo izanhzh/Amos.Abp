@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Amos.AbpLearn</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Amos.AbpLearn.Domain\Amos.AbpLearn.Domain.csproj" />
+    <PackageReference Include="Amos.Abp.TempTable.SqlServer" Version="1.1.0" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.TenantManagement.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.EntityFrameworkCore" Version="4.4.4" />
+  <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.EntityFrameworkCore\Amos.AbpLearn.ProductManagement.EntityFrameworkCore.csproj" /><ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.EntityFrameworkCore\Amos.AbpLearn.OrderManagement.EntityFrameworkCore.csproj" /></ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.*">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>compile; contentFiles; build; buildMultitargeting; buildTransitive; analyzers; native</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

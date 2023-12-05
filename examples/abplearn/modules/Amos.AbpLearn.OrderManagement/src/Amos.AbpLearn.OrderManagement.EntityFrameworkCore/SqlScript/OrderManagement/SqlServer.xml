@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SqlScripts Namespace="OrderManagement" DatabaseProvider="SqlServer" >
+	<Item Key="SelectProductById">select * from OrderManagementOrder where Id=@Id</Item>
+</SqlScripts>

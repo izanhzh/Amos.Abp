@@ -95,7 +95,7 @@ namespace Amos.Abp.Extensions.ObjectExtension
         /// <typeparam name="TObj"></typeparam>
         /// <param name="obj1"></param>
         /// <param name="obj2"></param>
-        /// <param name="comparer"></param>
+        /// <param name="compareProperties"></param>
         /// <returns></returns>
         public static bool Equals<TObj>(this TObj obj1, TObj obj2, params string[] compareProperties) where TObj : class
         {
