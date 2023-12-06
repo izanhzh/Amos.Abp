@@ -19,6 +19,8 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 5.0.x
+    - name: Go to framework folder
+      run: cd framework
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
