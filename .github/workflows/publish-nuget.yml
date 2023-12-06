@@ -34,3 +34,23 @@ jobs:
       with:
         PROJECT_FILE_PATH: framework/src/Amos.Abp.Domain/Amos.Abp.Domain.csproj
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    - name: Publish Amos.Abp.EntityFrameworkCore
+      uses: brandedoutcast/publish-nuget@v2.5.2
+      with:
+        PROJECT_FILE_PATH: framework/src/Amos.Abp.EntityFrameworkCore/Amos.Abp.EntityFrameworkCore.csproj
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    - name: Publish Amos.Abp.SqlScript
+      uses: brandedoutcast/publish-nuget@v2.5.2
+      with:
+        PROJECT_FILE_PATH: framework/src/Amos.Abp.SqlScript/Amos.Abp.SqlScript.csproj
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    - name: Publish Amos.Abp.TempTable
+      uses: brandedoutcast/publish-nuget@v2.5.2
+      with:
+        PROJECT_FILE_PATH: framework/src/Amos.Abp.TempTable/Amos.Abp.TempTable.csproj
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    - name: Publish Amos.Abp.TempTable.SqlServer
+      uses: brandedoutcast/publish-nuget@v2.5.2
+      with:
+        PROJECT_FILE_PATH: framework/src/Amos.Abp.TempTable.SqlServer/Amos.Abp.TempTable.SqlServer.csproj
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
