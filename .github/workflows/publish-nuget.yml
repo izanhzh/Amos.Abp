@@ -1,0 +1,32 @@
+# This workflow will publish nuget
+
+name: publish nuget
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore -c Release
+    - name: Test
+      run: dotnet test --no-build -c Release --verbosity normal
+    - name: Publish Amos.Abp.Domain
+      uses: brandedoutcast/publish-nuget@v2.5.2
+      with:
+        PROJECT_FILE_PATH: framework/src/Amos.Abp.Domain/Amos.Abp.Domain.csproj
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
