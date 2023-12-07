@@ -272,34 +272,37 @@ namespace Amos.AbpLearn.Web
             services.AddAbpSwaggerGen(
                 options =>
                 {
-                    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-                    {
-                        Type = SecuritySchemeType.OAuth2,
-                        Flows = new OpenApiOAuthFlows
-                        {
-                            Password = new OpenApiOAuthFlow
-                            {
-                                AuthorizationUrl = authorizationUrl,
-                                Scopes = new Dictionary<string, string>() { { "AbpLearn", "AbpLearn API" } },
-                                TokenUrl = tokenUrl
-                            }
-                        }
-                    });
+                    ////这里不对Swagger页面设置增加授权按钮，直接对Swagger的相关网页的终结点添加授权控制，这样Swagger调用接口的时候可以直接使用终结点授权时用户登录的信息
+                    ////这种方式适合没有和其他后台管理功能页面结合的时候，Swagger是一个独立的部署网站时，可以使用这种方式，而这里因为会和其他功能混在一起，已经包含了登录等功能
+                    ////如果给Swagger页面设置增加授权按钮，会导致和登录功能授权混乱，在登录功能中登录后，Swagger页面不需要登录也能操作
+                    //options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                    //{
+                    //    Type = SecuritySchemeType.OAuth2,
+                    //    Flows = new OpenApiOAuthFlows
+                    //    {
+                    //        Password = new OpenApiOAuthFlow
+                    //        {
+                    //            AuthorizationUrl = authorizationUrl,
+                    //            Scopes = new Dictionary<string, string>() { { "AbpLearn", "AbpLearn API" } },
+                    //            TokenUrl = tokenUrl
+                    //        }
+                    //    }
+                    //});
 
-                    options.AddSecurityRequirement(new OpenApiSecurityRequirement
-                    {
-                        {
-                            new OpenApiSecurityScheme
-                            {
-                                Reference = new OpenApiReference
-                                {
-                                    Type = ReferenceType.SecurityScheme,
-                                    Id = "oauth2"
-                                }
-                            },
-                            Array.Empty<string>()
-                        }
-                    });
+                    //options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                    //{
+                    //    {
+                    //        new OpenApiSecurityScheme
+                    //        {
+                    //            Reference = new OpenApiReference
+                    //            {
+                    //                Type = ReferenceType.SecurityScheme,
+                    //                Id = "oauth2"
+                    //            }
+                    //        },
+                    //        Array.Empty<string>()
+                    //    }
+                    //});
 
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "AbpLearn API", Version = "v1" });
                     options.SwaggerDoc("group1", new OpenApiInfo { Title = "AbpLearn API Group1", Version = "v1" });
@@ -347,8 +350,8 @@ namespace Amos.AbpLearn.Web
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "AbpLearn API");
 
-                options.OAuthClientId("AbpLearn_Swagger");
-                options.OAuthClientSecret("1q2w3e*");
+                //options.OAuthClientId("AbpLearn_Swagger");
+                //options.OAuthClientSecret("1q2w3e*");
             });
             var routePrefix = "myswagger";
             app.UseSwagger(options =>
@@ -362,8 +365,8 @@ namespace Amos.AbpLearn.Web
                 options.InjectJavascript("/swagger/ui/abp.js");//默认情况下，UseAbpSwaggerUI会调用options.InjectJavascript("ui/abp.js")，会将ui/abp.js注入到swagger文件夹，这里再次调用，将之前注入在swagger文件夹的复制给RoutePrefix文件夹下
                 options.InjectJavascript("/swagger/ui/abp.swagger.js");
 
-                options.OAuthClientId("AbpLearn_Swagger");
-                options.OAuthClientSecret("1q2w3e*");
+                //options.OAuthClientId("AbpLearn_Swagger");
+                //options.OAuthClientSecret("1q2w3e*");
             });
             #endregion
 
@@ -373,12 +376,13 @@ namespace Amos.AbpLearn.Web
 
             app.UseEndpoints(endpoints =>
             {
-                //TODO：增加自定义Policy，或者限制IP访问，这种方式能控制进入页面必须授权，但是会和swagger里面的授权访问接口功能产生混乱，swagger里面无法更换用户
-                ////对swagger相关终结点进行授权控制
-                //var pipeline = endpoints.CreateApplicationBuilder().Build();
-                //var swaggerAuthAttr = new AuthorizeAttribute(AbpLearnPermissions.AbpLearnApiSwagger);
-                //endpoints.Map("/swagger/{documentName}/swagger.json", pipeline).RequireAuthorization(swaggerAuthAttr);
-                //endpoints.Map("/swagger/index.html", pipeline).RequireAuthorization(swaggerAuthAttr);
+                //对swagger相关终结点进行授权控制（注意：采用这种方式时，不要在services.AddAbpSwaggerGen的时候设置添加授权按钮）
+                var pipeline = endpoints.CreateApplicationBuilder().Build();
+                var swaggerAuthAttr = new AuthorizeAttribute(AbpLearnPermissions.AbpLearnApiSwagger);
+                endpoints.Map("/swagger/{documentName}/swagger.json", pipeline).RequireAuthorization(swaggerAuthAttr);
+                endpoints.Map("/swagger/index.html", pipeline).RequireAuthorization(swaggerAuthAttr);
+                endpoints.Map("/myswagger/{documentName}/swagger.json", pipeline).RequireAuthorization(swaggerAuthAttr);
+                endpoints.Map("/myswagger/index.html", pipeline).RequireAuthorization(swaggerAuthAttr);
             });
         }
     }
