@@ -65,4 +65,4 @@ jobs:
     - name: Publish Nuget package
       run: |
         nuget push *.nupkg -ApiKey ${{secrets.NUGET_API_KEY}} -src https://api.nuget.org/v3/index.json -SkipDuplicate
-      working-directory: build/Release
+      working-directory: ./framework/build/Release
