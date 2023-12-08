@@ -1,1 +1,1 @@
-﻿1. Auto add entity to DbContext Model
+﻿Auto add entity to DbContext Model
