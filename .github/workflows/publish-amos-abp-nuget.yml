@@ -63,6 +63,8 @@ jobs:
     #     PROJECT_FILE_PATH: framework/src/Amos.Abp.TempTable.SqlServer/Amos.Abp.TempTable.SqlServer.csproj
     #     NUGET_KEY: ${{secrets.NUGET_API_KEY}}
     - name: Publish Nuget package
-      run: |
-        nuget push "*.nupkg" -ApiKey ${{secrets.NUGET_API_KEY}} -src https://api.nuget.org/v3/index.json -SkipDuplicate
+      # 使用nuget cli推送
+      # run: nuget push "*.nupkg" -ApiKey ${{secrets.NUGET_API_KEY}} -src https://api.nuget.org/v3/index.json -SkipDuplicate
+      # 使用donet cli推送
+      run : dotnet nuget push "*.nupkg" --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
       working-directory: ./framework/build/Release
