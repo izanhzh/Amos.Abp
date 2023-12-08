@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<ItemGroup>
-		<PackageReference Include="Scriban" Version="5.9.0" />
-		<PackageReference Include="Volo.Abp.Dapper" Version="4.4.4" />
+		<PackageReference Include="Scriban"/>
+		<PackageReference Include="Volo.Abp.Dapper"/>
 	</ItemGroup>
 
 	<ItemGroup>
