@@ -64,5 +64,5 @@ jobs:
     #     NUGET_KEY: ${{secrets.NUGET_API_KEY}}
     - name: Publish Nuget package
       run: |
-        nuget push Amos.Abp.Domain.*.nupkg -ApiKey ${{secrets.NUGET_API_KEY}} -src https://api.nuget.org/v3/index.json -SkipDuplicate
+        nuget push *.nupkg -ApiKey ${{secrets.NUGET_API_KEY}} -src https://api.nuget.org/v3/index.json -SkipDuplicate
       working-directory: ./framework/build/Release
