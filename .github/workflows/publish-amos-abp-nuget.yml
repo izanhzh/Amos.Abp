@@ -1,0 +1,63 @@
+# This workflow will publish Amos.Abp nuget package
+
+name: publish Amos.Abp nuget package
+
+# 设置触发器，以下示例为master分支，Directory.Build.props文件发生变动后，触发本action
+on:
+  push:
+    branches: [ "master" ] # 监听分支
+  # pull_request: # 监听代码提交请求
+  #   branches: [ "master" ]
+    paths: ["./framework/Directory.Build.props"] # 监听文件
+
+# 设置工作目录 
+defaults:
+  run:
+    working-directory: ./framework
+
+# 设置运行环境及执行步骤
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore -c Release
+    - name: Test
+      run: dotnet test --no-build -c Release --verbosity normal
+    # 使用brandedoutcast/publish-nuget方式发布nuget包
+    # - name: Publish Amos.Abp.Domain
+    #   uses: brandedoutcast/publish-nuget@v2.5.2
+    #   with:
+    #     PROJECT_FILE_PATH: framework/src/Amos.Abp.Domain/Amos.Abp.Domain.csproj
+    #     NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    # - name: Publish Amos.Abp.EntityFrameworkCore
+    #   uses: brandedoutcast/publish-nuget@v2.5.2
+    #   with:
+    #     PROJECT_FILE_PATH: framework/src/Amos.Abp.EntityFrameworkCore/Amos.Abp.EntityFrameworkCore.csproj
+    #     NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    # - name: Publish Amos.Abp.SqlScript
+    #   uses: brandedoutcast/publish-nuget@v2.5.2
+    #   with:
+    #     PROJECT_FILE_PATH: framework/src/Amos.Abp.SqlScript/Amos.Abp.SqlScript.csproj
+    #     NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    # - name: Publish Amos.Abp.TempTable
+    #   uses: brandedoutcast/publish-nuget@v2.5.2
+    #   with:
+    #     PROJECT_FILE_PATH: framework/src/Amos.Abp.TempTable/Amos.Abp.TempTable.csproj
+    #     NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    # - name: Publish Amos.Abp.TempTable.SqlServer
+    #   uses: brandedoutcast/publish-nuget@v2.5.2
+    #   with:
+    #     PROJECT_FILE_PATH: framework/src/Amos.Abp.TempTable.SqlServer/Amos.Abp.TempTable.SqlServer.csproj
+    #     NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    - name: Publish Nuget package
+      run: nuget push build/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate

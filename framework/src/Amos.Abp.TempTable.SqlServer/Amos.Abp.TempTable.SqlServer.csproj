@@ -1,18 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
-		<Version>1.1.1</Version>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RootNamespace>Amos.Abp</RootNamespace>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<PackageProjectUrl>https://github.com/izanhzh/Amos.Abp</PackageProjectUrl>
-	</PropertyGroup>
-
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="\" />
 		<ProjectReference Include="..\Amos.Abp.TempTable\Amos.Abp.TempTable.csproj" />
 	</ItemGroup>
 
