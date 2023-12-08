@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-		<RootNamespace>Amos.Abp</RootNamespace>
+	<RootNamespace>Amos.Abp</RootNamespace>
         <Version>1.1.1</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -12,6 +12,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
+	<None Include="README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
 </Project> 
