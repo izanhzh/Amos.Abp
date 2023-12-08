@@ -8,8 +8,11 @@ on:
     branches: [ "master" ] # 监听分支
   # pull_request: # 监听代码提交请求
   #   branches: [ "master" ]
-    paths: ["./framework/Directory.Build.props"] # 监听文件
-
+    paths: ["framework/Directory.Build.props"] # 监听文件
+    
+# 允许你手动在Github网页上执行该workflow
+  workflow_dispatch:
+  
 # 设置工作目录 
 defaults:
   run:
