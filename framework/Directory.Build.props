@@ -2,6 +2,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
         <RootNamespace>Amos.Abp</RootNamespace>
+        <Authors>Amos</Authors>
         <Version>1.1.1</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
