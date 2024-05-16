@@ -11,7 +11,7 @@
         <PackageProjectUrl>https://github.com/izanhzh/Amos.Abp</PackageProjectUrl>
 	<RepositoryType>git</RepositoryType>
 	<RepositoryUrl>https://github.com/izanhzh/Amos.Abp.git</RepositoryUrl>
-        <OutputPath>$(MSBuildThisFileDirectory)build\$(Configuration)\</OutputPath>
+        <PackageOutputPath>$(MSBuildThisFileDirectory)build\$(Configuration)\</PackageOutputPath>
     </PropertyGroup>
 
     <ItemGroup>
