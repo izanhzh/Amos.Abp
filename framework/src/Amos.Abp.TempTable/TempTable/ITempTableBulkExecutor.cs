@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace Amos.Abp.TempTable
             IEnumerable<TTempTable> entities,
             TempTableBulkExecutorOptions options,
             CancellationToken cancellationToken = default)
-            where TDbContext : IEfCoreDbContext
+            where TDbContext : DbContext
             where TTempTable : class, ITempTable;
 
         Task BulkInsertAsync<TDbContext, TTempTable>(
@@ -25,7 +26,7 @@ namespace Amos.Abp.TempTable
             string tableName,
             TempTableBulkExecutorOptions options,
             CancellationToken cancellationToken = default)
-            where TDbContext : IEfCoreDbContext
+            where TDbContext : DbContext
             where TTempTable : class, ITempTable;
     }
 }

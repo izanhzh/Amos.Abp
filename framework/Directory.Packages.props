@@ -4,17 +4,17 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageVersion Include="coverlet.collector" Version="3.0.2"/>
-        <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+        <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.2.1" />
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
         <PackageVersion Include="NSubstitute" Version="4.2.2" />
         <PackageVersion Include="Scriban" Version="5.9.0" />
         <PackageVersion Include="Shouldly" Version="4.0.3" />
-        <PackageVersion Include="Volo.Abp.Authorization" Version="4.4.4" />
-        <PackageVersion Include="Volo.Abp.Autofac" Version="4.4.4" />
-        <PackageVersion Include="Volo.Abp.Dapper" Version="4.4.4" />
-        <PackageVersion Include="Volo.Abp.Ddd.Domain" Version="4.4.4" />
-        <PackageVersion Include="Volo.Abp.EntityFrameworkCore" Version="4.4.4" />
-        <PackageVersion Include="Volo.Abp.TestBase" Version="4.4.4" />
+        <PackageVersion Include="Volo.Abp.Authorization" Version="8.2.0" />
+        <PackageVersion Include="Volo.Abp.Autofac" Version="8.2.0" />
+        <PackageVersion Include="Volo.Abp.Dapper" Version="8.2.0" />
+        <PackageVersion Include="Volo.Abp.Ddd.Domain" Version="8.2.0" />
+        <PackageVersion Include="Volo.Abp.EntityFrameworkCore" Version="8.2.0" />
+        <PackageVersion Include="Volo.Abp.TestBase" Version="8.2.0" />
         <PackageVersion Include="xunit" Version="2.4.1" />
         <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.3"/>
     </ItemGroup>

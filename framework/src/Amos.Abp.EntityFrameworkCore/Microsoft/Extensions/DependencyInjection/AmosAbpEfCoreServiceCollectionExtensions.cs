@@ -17,8 +17,6 @@ namespace Amos.Abp.Microsoft.Extensions.DependencyInjection
         /// <typeparam name="TDbContext"></typeparam>
         /// <param name="services"></param>
         /// <param name="optionsBuilder"></param>
-        /// <param name="registerTempTableRepository"></param>
-        /// <param name="registerBacthBulkExecuter"></param>
         /// <returns></returns>
         public static IServiceCollection AddAbpDbContextEx<TDbContext>(
             this IServiceCollection services,
@@ -42,7 +40,7 @@ namespace Amos.Abp.Microsoft.Extensions.DependencyInjection
 
             foreach (var dbContextType in replacedDbContextTypes)
             {
-                options.ReplaceDbContext(dbContextType);
+                options.ReplaceDbContext(dbContextType.Type, multiTenancySides: dbContextType.MultiTenancySide);
             }
 
             optionsBuilder?.Invoke(options);

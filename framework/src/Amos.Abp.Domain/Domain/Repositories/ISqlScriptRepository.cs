@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
-using Volo.Abp.Domain.Repositories;
 
 namespace Amos.Abp.Domain.Repositories
 {
     /// <summary>
-    /// SqlScriptKey格式约定：<script-namespace>:<script-id>
+    /// SqlScriptKey格式约定：script-namespace:script-id
     /// </summary>
-    public interface ISqlScriptRepository : IRepository
+    public interface ISqlScriptRepository
     {
         Task<string> GetSqlScriptAsync(string sqlScriptKey, object scriptRenderParam = null);
 

@@ -1,6 +1,7 @@
 ﻿using Amos.Abp.Domain.Repositories;
 using Amos.Abp.SqlScript;
 using Dapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,10 +11,12 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Amos.Abp.Repositories
 {
-    public abstract class SqlScriptRepository<TDbContext> : DapperRepository<TDbContext>, ISqlScriptRepository where TDbContext : IEfCoreDbContext
+    public abstract class SqlScriptRepository<TDbContext> : DapperRepository<TDbContext>, ISqlScriptRepository where TDbContext : DbContext, IEfCoreDbContext
     {
         private readonly IDbContextProvider<TDbContext> _dbContextProvider;
         private readonly ISqlScriptProvider _sqlScriptProvider;
+
+        public bool? IsChangeTrackingEnabled { get; }
 
         public SqlScriptRepository(
             IDbContextProvider<TDbContext> dbContextProvider,

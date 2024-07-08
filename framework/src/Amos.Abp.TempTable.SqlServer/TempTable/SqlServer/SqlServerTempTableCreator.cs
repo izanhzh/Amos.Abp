@@ -18,7 +18,7 @@ namespace Amos.Abp.TempTable.SqlServer
             IEntityType entityType,
             TempTableCreationOptions options,
             CancellationToken cancellationToken = default)
-            where TDbContext : IEfCoreDbContext
+            where TDbContext : DbContext
         {
             if (ctx == null)
                 throw new ArgumentNullException(nameof(ctx));
@@ -52,7 +52,7 @@ namespace Amos.Abp.TempTable.SqlServer
             string tableName,
             bool checkForExistence = false,
             CancellationToken cancellationToken = default)
-            where TDbContext : IEfCoreDbContext
+            where TDbContext : DbContext
         {
             if (ctx == null)
                 throw new ArgumentNullException(nameof(ctx));

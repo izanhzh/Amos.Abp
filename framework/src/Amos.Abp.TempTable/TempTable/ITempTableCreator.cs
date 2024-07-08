@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace Amos.Abp.TempTable
         /// <paramref name="entityType"/> is <c>null</c>.
         /// </exception>
         /// <exception cref="ArgumentException">The provided type <paramref name="entityType"/> is not known by the <paramref name="ctx"/>.</exception>
-        Task<string> CreateTempTableAsync<TDbContext>(TDbContext ctx, IEntityType entityType, TempTableCreationOptions options, CancellationToken cancellationToken = default) where TDbContext : IEfCoreDbContext;
+        Task<string> CreateTempTableAsync<TDbContext>(TDbContext ctx, IEntityType entityType, TempTableCreationOptions options, CancellationToken cancellationToken = default) where TDbContext : DbContext;
 
         /// <summary>
         /// Creates a primary key in a temp table with provided <paramref name="tableName"/>.
@@ -40,6 +41,6 @@ namespace Amos.Abp.TempTable
         /// <param name="tableName">Table name to create the primary key in.</param>
         /// <param name="checkForExistence">If <c>true</c> then the primary key is not going to be created if it exists already.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
-        Task CreatePrimaryKeyAsync<TDbContext>(TDbContext ctx, IEntityType entityType, string tableName, bool checkForExistence = false, CancellationToken cancellationToken = default) where TDbContext : IEfCoreDbContext;
+        Task CreatePrimaryKeyAsync<TDbContext>(TDbContext ctx, IEntityType entityType, string tableName, bool checkForExistence = false, CancellationToken cancellationToken = default) where TDbContext : DbContext;
     }
 }

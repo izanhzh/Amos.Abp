@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 
 namespace Amos.Abp.Extensions.ObjectExtension
 {
@@ -110,7 +110,7 @@ namespace Amos.Abp.Extensions.ObjectExtension
             }
 
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] encryptedBytes = md5.ComputeHash(Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(propertyValues).ToUpper()));
+            byte[] encryptedBytes = md5.ComputeHash(Encoding.ASCII.GetBytes(JsonSerializer.Serialize(propertyValues).ToUpper()));
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < encryptedBytes.Length; i++)
             {

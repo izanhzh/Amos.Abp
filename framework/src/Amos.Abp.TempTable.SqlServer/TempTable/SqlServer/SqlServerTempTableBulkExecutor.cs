@@ -22,7 +22,7 @@ namespace Amos.Abp.TempTable.SqlServer
             IEnumerable<TTempTable> entities,
             TempTableBulkExecutorOptions options,
             CancellationToken cancellationToken = default)
-            where TDbContext : IEfCoreDbContext
+            where TDbContext : DbContext
             where TTempTable : class, ITempTable
         {
             if (entityType == null)
@@ -39,7 +39,7 @@ namespace Amos.Abp.TempTable.SqlServer
             string tableName,
             TempTableBulkExecutorOptions options,
             CancellationToken cancellationToken = default)
-            where TDbContext : IEfCoreDbContext
+            where TDbContext : DbContext
             where TTempTable : class, ITempTable
         {
             if (ctx == null)

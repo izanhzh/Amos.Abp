@@ -1,15 +1,19 @@
 ﻿using Amos.Abp.EntityFrameworkCore;
 using Amos.Abp.TempTable;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Volo.Abp.Domain.Repositories;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace Amos.Abp.Domain.Repositories
 {
-    public abstract class EfCoreTempTableRepository<TDbContext> : ITempTableRepository where TDbContext : IEfCoreDbContext
+    public abstract class EfCoreTempTableRepository<TDbContext> : ITempTableRepository where TDbContext : DbContext, IEfCoreDbContext
     {
         private readonly IDbContextProvider<TDbContext> _dbContextProvider;
+
+        public bool? IsChangeTrackingEnabled { get; }
 
         public EfCoreTempTableRepository(IDbContextProvider<TDbContext> dbContextProvider)
         {

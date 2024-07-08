@@ -22,12 +22,13 @@ namespace Amos.Abp.EntityFrameworkCore
         /// <param name="entities">Entities to insert.</param>
         /// <param name="options">Options.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
+        /// <typeparam name="TDbContext">DbContext type.</typeparam>
         /// <typeparam name="TTempTable">Entity type.</typeparam>
         /// <returns>A query for accessing the inserted values.</returns>
         /// <exception cref="ArgumentNullException"> <paramref name="ctx"/> or <paramref name="entities"/> is <c>null</c>.</exception>
         public static async Task<IQueryable<TTempTable>> InsertIntoTempTableAsync<TDbContext, TTempTable>(this TDbContext ctx, IEnumerable<TTempTable> entities, TempTableInsertOptions options = null, CancellationToken cancellationToken = default)
             where TTempTable : class, ITempTable
-            where TDbContext : IEfCoreDbContext
+            where TDbContext : DbContext
         {
             if (ctx == null)
                 throw new ArgumentNullException(nameof(ctx));
@@ -54,7 +55,7 @@ namespace Amos.Abp.EntityFrameworkCore
 
         public static async Task<string> InsertIntoTempTableAndGetTableNameAsync<TDbContext, TTempTable>(this TDbContext ctx, IEnumerable<TTempTable> entities, TempTableInsertOptions options = null, CancellationToken cancellationToken = default)
             where TTempTable : class, ITempTable
-            where TDbContext : IEfCoreDbContext
+            where TDbContext : DbContext
         {
             if (ctx == null)
                 throw new ArgumentNullException(nameof(ctx));
@@ -80,7 +81,7 @@ namespace Amos.Abp.EntityFrameworkCore
         }
 
         private static IQueryable<TTempTable> GetTempTableQuery<TDbContext, TTempTable>(this TDbContext ctx, string tableName)
-            where TDbContext : IEfCoreDbContext
+            where TDbContext : DbContext
             where TTempTable : class, ITempTable
         {
             var sql = $"SELECT * FROM [{tableName}]";
