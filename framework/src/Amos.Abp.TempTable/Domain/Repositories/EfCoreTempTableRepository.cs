@@ -9,13 +9,21 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Amos.Abp.Domain.Repositories
 {
-    public abstract class EfCoreTempTableRepository<TDbContext> : ITempTableRepository where TDbContext : DbContext, IEfCoreDbContext
+    public abstract class EfCoreTempTableRepository<TDbContext> : EfCoreTempTableRepository<TDbContext, TDbContext>
+        where TDbContext : DbContext, IEfCoreDbContext
     {
-        private readonly IDbContextProvider<TDbContext> _dbContextProvider;
+        protected EfCoreTempTableRepository(IDbContextProvider<TDbContext> dbContextProvider) : base(dbContextProvider)
+        {
+        }
+    }
 
-        public bool? IsChangeTrackingEnabled { get; }
+    public abstract class EfCoreTempTableRepository<TDbContext, IDbContext> : ITempTableRepository
+        where TDbContext : DbContext, IDbContext
+        where IDbContext : IEfCoreDbContext
+    {
+        private readonly IDbContextProvider<IDbContext> _dbContextProvider;
 
-        public EfCoreTempTableRepository(IDbContextProvider<TDbContext> dbContextProvider)
+        public EfCoreTempTableRepository(IDbContextProvider<IDbContext> dbContextProvider)
         {
             _dbContextProvider = dbContextProvider;
         }
@@ -23,7 +31,7 @@ namespace Amos.Abp.Domain.Repositories
         public virtual async Task<IQueryable<TTempTable>> InsertIntoTempTableAsync<TTempTable>(IEnumerable<TTempTable> entities) where TTempTable : class, ITempTable
         {
             var dbContext = await _dbContextProvider.GetDbContextAsync();
-            return await dbContext.InsertIntoTempTableAsync(entities, new TempTableInsertOptions
+            return await ((TDbContext)dbContext).InsertIntoTempTableAsync(entities, new TempTableInsertOptions
             {
                 PrimaryKeyCreation = TempTablePrimaryKeyCreation.None,
                 TempTableCreationOptions = new TempTableCreationOptions() { MakeTableNameUnique = true }
@@ -33,7 +41,7 @@ namespace Amos.Abp.Domain.Repositories
         public virtual async Task<string> InsertIntoTempTableAndGetTableNameAsync<TTempTable>(IEnumerable<TTempTable> entities) where TTempTable : class, ITempTable
         {
             var dbContext = await _dbContextProvider.GetDbContextAsync();
-            return await dbContext.InsertIntoTempTableAndGetTableNameAsync(entities, new TempTableInsertOptions
+            return await ((TDbContext)dbContext).InsertIntoTempTableAndGetTableNameAsync(entities, new TempTableInsertOptions
             {
                 PrimaryKeyCreation = TempTablePrimaryKeyCreation.None,
                 TempTableCreationOptions = new TempTableCreationOptions() { MakeTableNameUnique = true }

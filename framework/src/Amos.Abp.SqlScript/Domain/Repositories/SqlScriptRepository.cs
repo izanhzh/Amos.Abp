@@ -11,15 +11,24 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Amos.Abp.Repositories
 {
-    public abstract class SqlScriptRepository<TDbContext> : DapperRepository<TDbContext>, ISqlScriptRepository where TDbContext : DbContext, IEfCoreDbContext
+    public abstract class SqlScriptRepository<TDbContext> : SqlScriptRepository<TDbContext, TDbContext>, ISqlScriptRepository
+       where TDbContext : DbContext, IEfCoreDbContext
     {
-        private readonly IDbContextProvider<TDbContext> _dbContextProvider;
+        protected SqlScriptRepository(IDbContextProvider<TDbContext> dbContextProvider, ISqlScriptProvider sqlScriptProvider)
+            : base(dbContextProvider, sqlScriptProvider)
+        {
+        }
+    }
+
+    public abstract class SqlScriptRepository<TDbContext, IDbContext> : DapperRepository<IDbContext>, ISqlScriptRepository
+    where TDbContext : DbContext, IDbContext
+    where IDbContext : IEfCoreDbContext
+    {
+        private readonly IDbContextProvider<IDbContext> _dbContextProvider;
         private readonly ISqlScriptProvider _sqlScriptProvider;
 
-        public bool? IsChangeTrackingEnabled { get; }
-
         public SqlScriptRepository(
-            IDbContextProvider<TDbContext> dbContextProvider,
+            IDbContextProvider<IDbContext> dbContextProvider,
             ISqlScriptProvider sqlScriptProvider) : base(dbContextProvider)
         {
             _dbContextProvider = dbContextProvider;
@@ -93,7 +102,7 @@ namespace Amos.Abp.Repositories
         private async Task<string> GetDatabaseProviderAsync()
         {
             var dbContext = await _dbContextProvider.GetDbContextAsync();
-            var databaseProvider = (EfCoreDatabaseProvider)dbContext.Model["_Abp_DatabaseProvider"];
+            var databaseProvider = (EfCoreDatabaseProvider)((TDbContext)dbContext).Model["_Abp_DatabaseProvider"];
             return databaseProvider.ToString();
         }
 
