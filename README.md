@@ -216,7 +216,9 @@ This repository is an extension based on Volo Abp(https://github.com/abpframewor
 	        </Item>
         </SqlScripts>
         ``` 
-        Note: [Namespace] and [DatabaseProvider] are correctly filled in the xml
+        > Note:
+        > 1. [Namespace] and [DatabaseProvider] are correctly filled in the xml
+        > 2. The handling of SQL string placeholder parameters (not query parameters) uses the `Scriban`(https://github.com/scriban/scriban) library. Please pay attention to the parameter settings.
   
     +  Configure `SqlScriptOptions` and add DependsOn in your EntityFrameworkCoreModule
         ```C#
