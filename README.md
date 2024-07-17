@@ -139,7 +139,7 @@ This repository is an extension based on Volo Abp(https://github.com/abpframewor
     ```
 7. Implement temp table repository in the EntityFrameworkCore layer
     ```C#
-    public class YourTempTableRepository : EfCoreTempTableRepository<IYourDbContext>, IYourTempTableRepository, ITransientDependency
+    public class YourTempTableRepository : EfCoreTempTableRepository<YourDbContext,IYourDbContext>, IYourTempTableRepository, ITransientDependency
     {
         public YourTempTableRepository(IDbContextProvider<IYourDbContext> dbContextProvider) 
             : base(dbContextProvider)
@@ -216,7 +216,9 @@ This repository is an extension based on Volo Abp(https://github.com/abpframewor
 	        </Item>
         </SqlScripts>
         ``` 
-        Note: [Namespace] and [DatabaseProvider] are correctly filled in the xml
+        > Note:
+        > 1. [Namespace] and [DatabaseProvider] are correctly filled in the xml
+        > 2. The handling of SQL string placeholder parameters (not query parameters) uses the `Scriban`(https://github.com/scriban/scriban) library. Please pay attention to the parameter settings.
   
     +  Configure `SqlScriptOptions` and add DependsOn in your EntityFrameworkCoreModule
         ```C#
@@ -235,7 +237,7 @@ This repository is an extension based on Volo Abp(https://github.com/abpframewor
         Note: [YourDefinedSqlScriptNamespace] is same as xml file [Namespace]
 5. Implement sql script repository in the EntityFrameworkCore layer
     ```C#
-    public class YourSqlScriptRepository : SqlScriptRepository<IYourDbContext>, IYourSqlScriptRepository, ITransientDependency
+    public class YourSqlScriptRepository : SqlScriptRepository<YourDbContext,IYourDbContext>, IYourSqlScriptRepository, ITransientDependency
     {
         public YourSqlScriptRepository(IDbContextProvider<IProductManagementDbContext> dbContextProvider, ISqlScriptProvider sqlScriptProvider) 
             : base(dbContextProvider, sqlScriptProvider)
