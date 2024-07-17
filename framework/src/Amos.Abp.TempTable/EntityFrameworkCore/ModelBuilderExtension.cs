@@ -1,5 +1,7 @@
-﻿using Amos.Abp.TempTable.EntityFrameworkCore;
+﻿using Amos.Abp.TempTable;
+using Amos.Abp.TempTable.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 
@@ -18,18 +20,33 @@ namespace Amos.Abp.EntityFrameworkCore
             var tempTables = TempTableFinder.GetAutoAddTempTables(typeof(TDbContext));
             foreach (var tempTable in tempTables)
             {
-                var isExists = modelBuilder.Model.FindEntityType(tempTable) != null;
-                if (!isExists)
+                modelBuilder.AddTempTableToModel(tempTable);
+            }
+        }
+
+        /// <summary>
+        /// Note: Call it before base.OnModelCreating
+        /// </summary>
+        /// <typeparam name="TTempTable"></typeparam>
+        /// <param name="modelBuilder"></param>
+        public static void AddTempTableToModel<TTempTable>(this ModelBuilder modelBuilder) where TTempTable : ITempTable
+        {
+            modelBuilder.AddTempTableToModel(typeof(TTempTable));
+        }
+
+        internal static void AddTempTableToModel(this ModelBuilder modelBuilder, Type tempTableType)
+        {
+            var isExists = modelBuilder.Model.FindEntityType(tempTableType) != null;
+            if (!isExists)
+            {
+                modelBuilder.Model.AddEntityType(tempTableType);
+                modelBuilder.Entity(tempTableType, (b) =>
                 {
-                    modelBuilder.Model.AddEntityType(tempTable);
-                    modelBuilder.Entity(tempTable, (b) =>
-                    {
-                        //b.ToView(null);
-                        b.ToTable("TempTable_" + tempTable.Name, (t) => t.ExcludeFromMigrations());
-                        b.HasNoKey();
-                        b.ConfigureByConvention();
-                    });
-                }
+                    //b.ToView(null);
+                    b.ToTable("TempTable_" + tempTableType.Name, (t) => t.ExcludeFromMigrations());
+                    b.HasNoKey();
+                    b.ConfigureByConvention();
+                });
             }
         }
     }
