@@ -1,11 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net9.0</TargetFrameworks>
+		<LangVersion>8.0</LangVersion>
 	</PropertyGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Ddd.Domain"/>
+	</ItemGroup>
+	
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="System.Reflection.Emit.Lightweight" />
 	</ItemGroup>
 
 </Project>

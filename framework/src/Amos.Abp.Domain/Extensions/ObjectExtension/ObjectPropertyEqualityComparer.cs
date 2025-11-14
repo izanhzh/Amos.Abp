@@ -68,7 +68,15 @@ namespace Amos.Abp.Extensions.ObjectExtension
             configureOptions(_options);
         }
 
-        public bool Equals([AllowNull] T x, [AllowNull] T y)
+        public bool Equals(
+#if !NETSTANDARD2_0
+            [AllowNull]
+#endif
+            T x,
+#if !NETSTANDARD2_0
+            [AllowNull]
+#endif
+            T y)
         {
             if (x == null || y == null)
             {
@@ -86,7 +94,15 @@ namespace Amos.Abp.Extensions.ObjectExtension
             return true;
         }
 
-        public virtual bool TryUpdatePropertyValueIfNotEquals([DisallowNull] T source, [DisallowNull] T target)
+        public virtual bool TryUpdatePropertyValueIfNotEquals(
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            T source,
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            T target)
         {
             var isUpdated = false;
             foreach (var property in _compareProperties)
@@ -100,7 +116,11 @@ namespace Amos.Abp.Extensions.ObjectExtension
             return isUpdated;
         }
 
-        public int GetHashCode([DisallowNull] T obj)
+        public int GetHashCode(
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            T obj)
         {
             var hashCode = 0;
             foreach (var property in _compareProperties)
