@@ -9,7 +9,7 @@ namespace Amos.Abp.TempTable
         /// <summary>
         /// Gets the properties the reader is created for.
         /// </summary>
-        /// <returns>A collection of <see cref="PropertyInfo"/>.</returns>
+        /// <returns>A collection of <see cref="IProperty"/>.</returns>
         IList<IProperty> Properties { get; }
 
         /// <summary>
