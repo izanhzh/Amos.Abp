@@ -52,6 +52,8 @@ namespace Amos.AbpLearn.EntityFrameworkCore
         public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
         public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
         public DbSet<IdentityLinkUser> LinkUsers { get; set; }
+        public DbSet<IdentityUserDelegation> UserDelegations { get; set; }
+        public DbSet<IdentitySession> Sessions { get; set; }
 
         // Tenant Management
         public DbSet<Tenant> Tenants { get; set; }

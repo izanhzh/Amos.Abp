@@ -10,7 +10,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Amos.AbpLearn.Domain\Amos.AbpLearn.Domain.csproj" />
     <ProjectReference Include="..\Amos.AbpLearn.Application.Contracts\Amos.AbpLearn.Application.Contracts.csproj" />
-  <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.Application\Amos.AbpLearn.ProductManagement.Application.csproj" /><ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.Application\Amos.AbpLearn.OrderManagement.Application.csproj" /></ItemGroup>
+    <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.Application\Amos.AbpLearn.ProductManagement.Application.csproj" />
+    <ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.Application\Amos.AbpLearn.OrderManagement.Application.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Account.Application" Version="9.3.6" />

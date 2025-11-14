@@ -9,7 +9,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Amos.AbpLearn.Application.Contracts\Amos.AbpLearn.Application.Contracts.csproj" />
-  <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.HttpApi\Amos.AbpLearn.ProductManagement.HttpApi.csproj" /><ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.HttpApi\Amos.AbpLearn.OrderManagement.HttpApi.csproj" /></ItemGroup>
+    <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.HttpApi\Amos.AbpLearn.ProductManagement.HttpApi.csproj" />
+    <ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.HttpApi\Amos.AbpLearn.OrderManagement.HttpApi.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Account.HttpApi" Version="9.3.6" />

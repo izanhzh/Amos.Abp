@@ -9,7 +9,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Amos.AbpLearn.Domain.Shared\Amos.AbpLearn.Domain.Shared.csproj" />
-  <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.Domain\Amos.AbpLearn.ProductManagement.Domain.csproj" /><ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.Domain\Amos.AbpLearn.OrderManagement.Domain.csproj" /></ItemGroup>
+    <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.Domain\Amos.AbpLearn.ProductManagement.Domain.csproj" />
+    <ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.Domain\Amos.AbpLearn.OrderManagement.Domain.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.BackgroundWorkers.Quartz" Version="9.3.6" />
