@@ -1,8 +1,8 @@
+using IdentityServer4.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using IdentityServer4.Models;
-using Microsoft.Extensions.Configuration;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -111,7 +111,7 @@ namespace Amos.AbpLearn.IdentityServer
 
         private async Task<ApiScope> CreateApiScopeAsync(string name)
         {
-            var apiScope = await _apiScopeRepository.GetByNameAsync(name);
+            var apiScope = await _apiScopeRepository.FindByNameAsync(name);
             if (apiScope == null)
             {
                 apiScope = await _apiScopeRepository.InsertAsync(

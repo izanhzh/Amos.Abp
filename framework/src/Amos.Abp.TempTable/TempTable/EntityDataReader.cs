@@ -51,7 +51,7 @@ namespace Amos.Abp.TempTable
                 var getter = property.GetGetter();
 
                 if (getter == null)
-                    throw new ArgumentException($"The property '{property.Name}' of entity '{property.DeclaringEntityType.Name}' has no property getter.");
+                    throw new ArgumentException($"The property '{property.Name}' of entity '{((IEntityType)property.DeclaringType).Name}' has no property getter.");
 
                 lookup.Add(i, getter.GetClrValue);
             }

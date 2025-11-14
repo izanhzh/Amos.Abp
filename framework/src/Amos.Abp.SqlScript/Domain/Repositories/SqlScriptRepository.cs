@@ -11,24 +11,14 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Amos.Abp.Repositories
 {
-    public abstract class SqlScriptRepository<TDbContext> : SqlScriptRepository<TDbContext, TDbContext>, ISqlScriptRepository
-       where TDbContext : DbContext, IEfCoreDbContext
+    public abstract class SqlScriptRepository<TDbContext> : DapperRepository<TDbContext>, ISqlScriptRepository
+        where TDbContext : IEfCoreDbContext
     {
-        protected SqlScriptRepository(IDbContextProvider<TDbContext> dbContextProvider, ISqlScriptProvider sqlScriptProvider)
-            : base(dbContextProvider, sqlScriptProvider)
-        {
-        }
-    }
-
-    public abstract class SqlScriptRepository<TDbContext, IDbContext> : DapperRepository<IDbContext>, ISqlScriptRepository
-    where TDbContext : DbContext, IDbContext
-    where IDbContext : IEfCoreDbContext
-    {
-        private readonly IDbContextProvider<IDbContext> _dbContextProvider;
+        private readonly IDbContextProvider<TDbContext> _dbContextProvider;
         private readonly ISqlScriptProvider _sqlScriptProvider;
 
         public SqlScriptRepository(
-            IDbContextProvider<IDbContext> dbContextProvider,
+            IDbContextProvider<TDbContext> dbContextProvider,
             ISqlScriptProvider sqlScriptProvider) : base(dbContextProvider)
         {
             _dbContextProvider = dbContextProvider;
@@ -102,8 +92,15 @@ namespace Amos.Abp.Repositories
         private async Task<string> GetDatabaseProviderAsync()
         {
             var dbContext = await _dbContextProvider.GetDbContextAsync();
-            var databaseProvider = (EfCoreDatabaseProvider)((TDbContext)dbContext).Model["_Abp_DatabaseProvider"];
-            return databaseProvider.ToString();
+            if (dbContext is DbContext context)
+            {
+                var databaseProvider = (EfCoreDatabaseProvider)context.Model["_Abp_DatabaseProvider"];
+                return databaseProvider.ToString();
+            }
+            else
+            {
+                throw new InvalidOperationException("The provided dbContext is not of type DbContext.");
+            }
         }
 
         private DataSet ConvertDataReaderToDataSet(IDataReader reader)

@@ -109,7 +109,7 @@ namespace Amos.Abp.Extensions.ObjectExtension
                 propertyValues.Add(propertyName, properties[propertyName].GetValue(instance));
             }
 
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            using var md5 = MD5.Create();
             byte[] encryptedBytes = md5.ComputeHash(Encoding.ASCII.GetBytes(JsonSerializer.Serialize(propertyValues).ToUpper()));
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < encryptedBytes.Length; i++)

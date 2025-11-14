@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>Amos.AbpLearn.Web</RootNamespace>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -20,7 +20,9 @@
     <Content Remove="Logs\**" />
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="Logs\**" />
-  <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.Web\Amos.AbpLearn.ProductManagement.Web.csproj" /><ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.Web\Amos.AbpLearn.OrderManagement.Web.csproj" /></ItemGroup>
+    <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.Web\Amos.AbpLearn.ProductManagement.Web.csproj" />
+    <ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.Web\Amos.AbpLearn.OrderManagement.Web.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="Pages\**\*.js">
@@ -40,17 +42,21 @@
     <ProjectReference Include="..\Amos.AbpLearn.Application\Amos.AbpLearn.Application.csproj" />
     <ProjectReference Include="..\Amos.AbpLearn.HttpApi\Amos.AbpLearn.HttpApi.csproj" />
     <ProjectReference Include="..\Amos.AbpLearn.EntityFrameworkCore\Amos.AbpLearn.EntityFrameworkCore.csproj" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.Autofac" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.Swashbuckle" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.Identity.Web" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.Swashbuckle" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.Identity.Web" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="9.3.6" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties appsettings_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 
 </Project>
