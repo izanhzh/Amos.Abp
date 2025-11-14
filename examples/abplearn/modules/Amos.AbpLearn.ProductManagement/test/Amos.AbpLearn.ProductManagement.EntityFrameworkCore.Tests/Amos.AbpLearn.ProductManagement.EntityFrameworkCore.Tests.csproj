@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>Amos.AbpLearn.ProductManagement</RootNamespace>
   </PropertyGroup>
 
@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.*" />
     <ProjectReference Include="..\..\src\Amos.AbpLearn.ProductManagement.EntityFrameworkCore\Amos.AbpLearn.ProductManagement.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Amos.AbpLearn.ProductManagement.TestBase\Amos.AbpLearn.ProductManagement.TestBase.csproj" />
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="9.3.6" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>Amos.AbpLearn</RootNamespace>
   </PropertyGroup>
 
@@ -13,12 +13,12 @@
   <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.Application\Amos.AbpLearn.ProductManagement.Application.csproj" /><ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.Application\Amos.AbpLearn.OrderManagement.Application.csproj" /></ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Account.Application" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.Identity.Application" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Account.Application" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="9.3.6" />
   </ItemGroup>
 
 </Project>
