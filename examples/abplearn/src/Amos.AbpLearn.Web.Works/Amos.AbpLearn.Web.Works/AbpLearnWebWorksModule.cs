@@ -8,8 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Quartz;
 using SilkierQuartz;
-using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,7 +23,6 @@ using Volo.Abp.IdentityServer.Tokens;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Quartz;
-using Volo.Abp.Threading;
 
 namespace Amos.AbpLearn.Web.Works
 {
@@ -136,20 +133,20 @@ namespace Amos.AbpLearn.Web.Works
                 options.Languages.Add(new LanguageInfo("hu", "hu", "Magyar"));
                 options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
                 options.Languages.Add(new LanguageInfo("fr", "fr", "Français"));
-                options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi", "in"));
-                options.Languages.Add(new LanguageInfo("it", "it", "Italian", "it"));
+                options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi"));
+                options.Languages.Add(new LanguageInfo("it", "it", "Italian"));
                 options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
                 options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
                 options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak"));
                 options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
                 options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
-                options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch", "de"));
+                options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch"));
                 options.Languages.Add(new LanguageInfo("es", "es", "Español"));
             });
         }
 
-        public override void OnApplicationInitialization(ApplicationInitializationContext context)
+        public override async Task OnApplicationInitializationAsync(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
             var env = context.GetEnvironment();
@@ -188,15 +185,15 @@ namespace Amos.AbpLearn.Web.Works
             var backgroundWorkerManager = context.ServiceProvider.GetRequiredService<IBackgroundWorkerManager>();
             foreach (var work in works)
             {
-                if (work.JobDetail != null && !AsyncHelper.RunSync(() => scheduler.CheckExists(work.JobDetail.Key)))
+                if (work.JobDetail != null && !(await scheduler.CheckExists(work.JobDetail.Key)))
                 {
                     if (work.Trigger == null)
                     {
-                        AsyncHelper.RunSync(() => scheduler.AddJob(work.JobDetail, true, true));
+                        await scheduler.AddJob(work.JobDetail, true, true);
                     }
                     else
                     {
-                        backgroundWorkerManager.Add(work);
+                        await backgroundWorkerManager.AddAsync(work);
                     }
                 }
             }

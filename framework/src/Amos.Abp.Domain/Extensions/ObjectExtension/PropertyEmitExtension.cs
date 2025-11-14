@@ -201,7 +201,15 @@ namespace Amos.Abp.Extensions.ObjectExtension
         /// <param name="target"></param>
         /// <param name="compareProperties"></param>
         /// <returns></returns>
-        public static bool TryUpdatePropertyValueIfNotEquals<TObj>([DisallowNull] this TObj source, [DisallowNull] TObj target, params string[] compareProperties) where TObj : class
+        public static bool TryUpdatePropertyValueIfNotEquals<TObj>(
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            this TObj source,
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            TObj target, params string[] compareProperties) where TObj : class
         {
             return new ObjectPropertyEqualityComparer<TObj>(compareProperties).TryUpdatePropertyValueIfNotEquals(source, target);
         }
@@ -215,7 +223,15 @@ namespace Amos.Abp.Extensions.ObjectExtension
         /// <param name="configureOptions"></param>
         /// <param name="compareProperties"></param>
         /// <returns></returns>
-        public static bool TryUpdatePropertyValueIfNotEquals<TObj>([DisallowNull] this TObj source, [DisallowNull] TObj target, Action<ObjectPropertyEqualityComparerOptions> configureOptions, params string[] compareProperties) where TObj : class
+        public static bool TryUpdatePropertyValueIfNotEquals<TObj>(
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            this TObj source,
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            TObj target, Action<ObjectPropertyEqualityComparerOptions> configureOptions, params string[] compareProperties) where TObj : class
         {
             return new ObjectPropertyEqualityComparer<TObj>(configureOptions, compareProperties).TryUpdatePropertyValueIfNotEquals(source, target);
         }
@@ -228,7 +244,15 @@ namespace Amos.Abp.Extensions.ObjectExtension
         /// <param name="target"></param>
         /// <param name="comparePropertiesSelector"></param>
         /// <returns></returns>
-        public static bool TryUpdatePropertyValueIfNotEquals<TObj>([DisallowNull] this TObj source, [DisallowNull] TObj target, Expression<Func<TObj, object>> comparePropertiesSelector) where TObj : class
+        public static bool TryUpdatePropertyValueIfNotEquals<TObj>(
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            this TObj source,
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            TObj target, Expression<Func<TObj, object>> comparePropertiesSelector) where TObj : class
         {
             return new ObjectPropertyEqualityComparer<TObj>(comparePropertiesSelector).TryUpdatePropertyValueIfNotEquals(source, target);
         }
@@ -242,7 +266,15 @@ namespace Amos.Abp.Extensions.ObjectExtension
         /// <param name="configureOptions"></param>
         /// <param name="comparePropertiesSelector"></param>
         /// <returns></returns>
-        public static bool TryUpdatePropertyValueIfNotEquals<TObj>([DisallowNull] this TObj source, [DisallowNull] TObj target, Action<ObjectPropertyEqualityComparerOptions> configureOptions, Expression<Func<TObj, object>> comparePropertiesSelector) where TObj : class
+        public static bool TryUpdatePropertyValueIfNotEquals<TObj>(
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            this TObj source,
+#if !NETSTANDARD2_0
+            [DisallowNull]
+#endif
+            TObj target, Action<ObjectPropertyEqualityComparerOptions> configureOptions, Expression<Func<TObj, object>> comparePropertiesSelector) where TObj : class
         {
             return new ObjectPropertyEqualityComparer<TObj>(configureOptions, comparePropertiesSelector).TryUpdatePropertyValueIfNotEquals(source, target);
         }

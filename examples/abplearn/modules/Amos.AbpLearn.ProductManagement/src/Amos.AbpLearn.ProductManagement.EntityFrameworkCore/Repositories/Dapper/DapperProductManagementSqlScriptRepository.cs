@@ -6,9 +6,9 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Amos.AbpLearn.ProductManagement.Repositories.Dapper
 {
-    public class DapperProductManagementSqlScriptRepository : SqlScriptRepository<IProductManagementDbContext>, IProductManagementSqlScriptRepository, ITransientDependency
+    public class DapperProductManagementSqlScriptRepository : SqlScriptRepository<ProductManagementDbContext>, IProductManagementSqlScriptRepository, ITransientDependency
     {
-        public DapperProductManagementSqlScriptRepository(IDbContextProvider<IProductManagementDbContext> dbContextProvider, ISqlScriptProvider sqlScriptProvider) : base(dbContextProvider, sqlScriptProvider)
+        public DapperProductManagementSqlScriptRepository(IDbContextProvider<ProductManagementDbContext> dbContextProvider, ISqlScriptProvider sqlScriptProvider) : base(dbContextProvider, sqlScriptProvider)
         {
         }
     }
