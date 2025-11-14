@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>Amos.AbpLearn</RootNamespace>
   </PropertyGroup>
 
@@ -12,12 +12,12 @@
   <ProjectReference Include="..\..\modules\Amos.AbpLearn.ProductManagement\src\Amos.AbpLearn.ProductManagement.HttpApi\Amos.AbpLearn.ProductManagement.HttpApi.csproj" /><ProjectReference Include="..\..\modules\Amos.AbpLearn.OrderManagement\src\Amos.AbpLearn.OrderManagement.HttpApi\Amos.AbpLearn.OrderManagement.HttpApi.csproj" /></ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Account.HttpApi" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="4.4.4" />
-    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Account.HttpApi" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="9.3.6" />
+    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="9.3.6" />
   </ItemGroup>
 
 </Project>
