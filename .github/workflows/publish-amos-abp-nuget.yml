@@ -4,11 +4,11 @@ name: publish Amos.Abp nuget package
 
 # 设置触发器，以下示例为master分支，Directory.Build.props文件发生变动后，触发本action
 on:
-  push:
-    branches: [ "master" ] # 监听分支
+  #push:
+  #  branches: [ "master" ] # 监听分支
   # pull_request: # 监听代码提交请求
   #   branches: [ "master" ]
-    paths: ["framework/Directory.Build.props"] # 监听文件
+  #  paths: ["framework/Directory.Build.props"] # 监听文件
     
 # 允许你手动在Github网页上执行该workflow
   workflow_dispatch:
@@ -29,7 +29,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: 9.x.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
